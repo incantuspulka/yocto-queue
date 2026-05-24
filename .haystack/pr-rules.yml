@@ -1,0 +1,57 @@
+rules:
+  - id: "preserve-esm-default-export"
+    name: "Preserve ESM default export API"
+    type: llm
+    severity: warning
+    category: "patterns"
+    message: "Keep the queue module as an ESM default export and update imports/types accordingly instead of switching to CommonJS or named-export API shapes."
+    llm:
+      prompt: "Keep the queue module as an ESM default export and update imports/types accordingly instead of switching to CommonJS or named-export API shapes."
+  - id: "use-private-class-fields-for-state"
+    name: "Use private class fields for state"
+    type: llm
+    severity: warning
+    category: "style"
+    message: "Store queue internals in ECMAScript private fields (like head, tail, and size) rather than exposing public or underscored mutable properties."
+    llm:
+      prompt: "Store queue internals in ECMAScript private fields (like head, tail, and size) rather than exposing public or underscored mutable properties."
+  - id: "maintain-o1-queue-operations"
+    name: "Maintain O(1) enqueue and dequeue"
+    type: llm
+    severity: warning
+    category: "performance"
+    message: "Keep the linked-node plus tail-pointer design so enqueue/dequeue remain O(1), and avoid array-based or traversal-based rewrites that change complexity."
+    llm:
+      prompt: "Keep the linked-node plus tail-pointer design so enqueue/dequeue remain O(1), and avoid array-based or traversal-based rewrites that change complexity."
+  - id: "preserve-empty-queue-undefined-contract"
+    name: "Preserve empty queue undefined contract"
+    type: llm
+    severity: warning
+    category: "patterns"
+    message: "Keep dequeue() and peek() returning undefined for an empty queue and do not replace this with exceptions or sentinel values."
+    llm:
+      prompt: "Keep dequeue() and peek() returning undefined for an empty queue and do not replace this with exceptions or sentinel values."
+  - id: "preserve-iterator-vs-drain-semantics"
+    name: "Preserve iterator and drain semantics"
+    type: llm
+    severity: warning
+    category: "patterns"
+    message: "Ensure Symbol.iterator remains non-destructive while drain() is destructive and consumes items through dequeue semantics."
+    llm:
+      prompt: "Ensure Symbol.iterator remains non-destructive while drain() is destructive and consumes items through dequeue semantics."
+  - id: "keep-constructor-clear-reset-pattern"
+    name: "Keep constructor clear reset pattern"
+    type: llm
+    severity: warning
+    category: "style"
+    message: "Initialize state via clear() and keep clear() resetting head/tail to undefined and size to 0."
+    llm:
+      prompt: "Initialize state via clear() and keep clear() resetting head/tail to undefined and size to 0."
+  - id: "sync-runtime-types-and-docs"
+    name: "Sync runtime, typings, and docs"
+    type: llm
+    severity: warning
+    category: "patterns"
+    message: "When changing the public queue API in index.js, update index.d.ts and readme.md to match signatures and behavior, including iterable and undefined-return semantics."
+    llm:
+      prompt: "When changing the public queue API in index.js, update index.d.ts and readme.md to match signatures and behavior, including iterable and undefined-return semantics."
